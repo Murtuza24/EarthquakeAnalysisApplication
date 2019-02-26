@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<div class="topData">
+		Mohammed Murtuza Bhaiji - 1001666586<br/>
+	</div>
+</head>
+<body>
+	<div class="container">
+		<table class="blueTable">
+ 			<thead>
+ 				<tr>
+					<th>Location Source</th>
+					<th>Location Count</th>
+					<th>Max Magntitude</th>
+				</tr>
+ 			</thead>
+			{% for row in ci %}
+				<tr>
+					<td>{{ row['locationSource'] }}</td>
+					<td>{{ row['LOCATIONCOUNT'] }}</td>
+					<td>{{ row['MAXMAG'] }}</td>
+				</tr>
+			{% endfor %}
+		</table>
+	</div>
+</body>
+</html>

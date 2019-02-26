@@ -1,0 +1,5 @@
+---
+applications:
+ - name: EarthquakeAssignment
+   random-route: true
+   memory: 256M

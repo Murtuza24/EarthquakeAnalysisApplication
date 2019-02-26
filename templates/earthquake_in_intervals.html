@@ -1,0 +1,47 @@
+<head>
+        <meta charset="UTF-8">
+        <title>Cloud Assignment 2</title>
+
+    <h1>Mohammed Murtuza - 1001666586</h1>
+        </head>
+        <body>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <!--<form action="earthquake_in_intervals" method="get">-->
+                                <!--Magnitude <br>-->
+                                <!--<input type="text" id="magnitude_low" name="magnitude_low" placeholder="Enter the magnitude low" value="2.0"/>-->
+                                <!--<input type="text" id="magnitude_high" name="magnitude_high" placeholder="Enter the magnitude high" value="2.5"/>-->
+                                <!--<br>-->
+                            <!--</form>-->
+                      <br>
+                            <div>
+                   <table border="1">
+                   <thead>
+                        <tr>
+                            <th>Magnitude Interval</th>
+                            <th>Earthquake Count</th>
+                        </tr>
+                   </thead>
+                       <tbody>
+                       {% for item in rows %}
+                            <tr>
+                                <td>{{ item[0] }}</td>
+                                <td>{{ item[1] }}</td>
+                            </tr><br>
+                       {% endfor %}
+                       </tbody>
+                   </table>
+                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            {% for item in rows %}
+                            <tr>
+                                <td>{{ item[0] }}</td>
+                                <td>{{ item[1] }}</td>
+                            </tr><br>
+            {% endfor %}
+        </body>

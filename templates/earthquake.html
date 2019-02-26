@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cloud Assignment 2</title>
+
+    <h1>Mohammed Murtuza - 1001666586</h1>
+    <!--<nav>-->
+        <!--<ul>-->
+          <!--<li><a href="#home">Task 1</a></li>-->
+          <!--<li><a href="#news">Task 2</a></li>-->
+          <!--<li><a href="#contact">Task 3</a></li>-->
+          <!--<li><a href="#about">Task 4</a></li>-->
+        <!--</ul>-->
+    <!--</nav>-->
+</head>
+
+<style>
+    ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  position:relative
+  overflow:hidden
+  width: 100%;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100px;
+  overflow: auto;
+}
+
+li a {
+  <!--display: inline;-->
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+li a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+li a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+    #table {
+      font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    #table td, #table th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    #table tr:nth-child(even){background-color: #f2f2f2;}
+
+    #table tr:hover {background-color: #ddd;}
+
+    #table th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #4CAF50;
+      color: white;
+    }
+</style>
+
+<body>
+
+    <form action="/search" method="get">
+        Enter a magnitude<input type="text" name="mag" method="get" action="/search">
+        <input type="submit" value="Search">
+ </form>
+    <br>
+
+    <form action="/magnitude_range_search" method="get">
+        Enter lower magnitude<input type="text" name="lmag" method="get" action="/magnitude_range_search">
+        Enter higher magnitude<input type="text" name="hmag" method="get" action="/magnitude_range_search">
+        Enter net<input type="text" name="net" method="get" action="/magnitude_range_search">
+   <input type="submit" value="Search">
+ </form>
+    <br>
+
+    <form action="/searchStateWithMaxMag" method="get">
+        Enter lower polarity<input type="text" name="lpolar" method="get" action="/searchStateWithMaxMag">
+        Enter higher polarity<input type="text" name="hpolar" method="get" action="/searchStateWithMaxMag">
+
+   <input type="submit" value="Search">
+ </form>
+    <br>
+
+    <form action="/searchindate" method="get">
+        <label for="startdate">Start date:</label>
+        <input type="date" id="startdate" name="startdate"
+               value="2018-07-22"
+               min="2000-01-01" max="2019-12-31">
+
+        <label for="enddate">End date:</label>
+        <input type="date" id="enddate" name="enddate"
+               value="2018-07-22"
+               min="2000-01-01" max="2019-12-31">
+   <input type="submit" value="Search">
+ </form>
+    <br>
+
+    <form action="/searchDayNight" method="get">
+        Day/Night Enter Magnitude<input type="text" name="mag" method="get" action="/searchDayNight">
+
+
+   <input type="submit" value="Search">
+    </form>
+    <br>
+
+    <form action="/searchByRadius" method="get">
+        Enter Radius<input type="text" name="radius" method="get" action="/searchByRadius">
+        <label for="latitude">Enter latitude:</label>
+        <input type="text" id="latitude" name="latitude" step="any" >
+
+        <label for="longitude">Enter longitude:</label>
+        <input type="text" id="longitude" name="longitude"  >
+        Enter Magnitude<input type="text" name="mag" method="get" action="/searchByRadius">
+
+        <input type="submit" value="Search">
+
+
+
+    </form>
+    <br>
+
+    <form action="/searchBoxRange" method="get">
+        <label for="latitude">Enter latitude1:</label>
+        <input type="text" id="lat1" name="latitude1" step="any" >
+
+        <label for="longitude">Enter longitude1:</label>
+        <input type="text" id="long1" name="longitude" step="any" >
+        <br>
+        <label for="latitude">Enter latitude2:</label>
+        <input type="text" id="lat2" name="latitude" >
+
+        <label for="longitude">Enter longitude2:</label>
+        <input type="text" id="long2" name="longitude"  >
+        <input type="submit" value="Search">
+    </form>
+    <br>
+
+    <form action="/visualizeData" method="get">
+        <label> Visualize based on magnitude</label>
+        <input type="submit" value="Visualize">
+    </form>
+
+    <form action="earthquake_in_intervals" method="get">
+        Counts based on Magnitude <br>
+        <input type="text" id="magnitude_low" name="magnitude_low" placeholder="Enter the magnitude low" value="2.0"/>
+        <input type="text" id="magnitude_high" name="magnitude_high" placeholder="Enter the magnitude high" value="2.5"/>
+        <input type="submit" value="Search">
+        <br>
+    </form>
+
+    <form action="searchBasedOnDepth" method="get">
+        Counts based on Depth and Nst <br>
+        <input type="text" id="depth_low" name="depth_low" placeholder="Enter the depth low" value="0"/>
+        <input type="text" id="depth_high" name="depth_high" placeholder="Enter the depth high" value="20"/>
+        <input type="text" id="nst" name="nst" placeholder="Enter the nst" value="8"/>
+        <input type="submit" value="Search">
+        <br>
+    </form>
+
+   <div >
+        <table id="table">
+
+
+        {% if ci|length > 0 %}
+            <p>{{ci|length}} records</p>
+            <tr>
+                <!--<th>Local Time</th>-->
+                <th>Time</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Mag</th>
+                <th>net</th>
+                <th>id</th>
+                <th>place</th>
+
+            </tr>
+
+            {% for people in ci %}
+
+                <tr>
+                    <!--<td>{{people['time']}}</td>-->
+                    <td>{{people['time']}}</td>
+                    <td>{{people['latitude']}}</td>
+                    <td>{{people['longitude']}}</td>
+                    <td>{{people['mag']}}</td>
+                    <td>{{people['net']}}</td>
+                    <td>{{people['id']}}</td>
+                    <td>{{people['place']}}</td>
+                </tr>
+
+            {% endfor %}
+        {% else %}
+            <p>No records found</p>
+        {% endif %}
+        </table>
+    </div>
+
+    <br>
+    <br>
+
+
+</body>
+</html>
